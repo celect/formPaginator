@@ -13,8 +13,13 @@ describe("jquery.paginateFormUITools", function() {
       expect(tabbed_page_links.length).toEqual(0);
     });
 
-    it('has no "Previous" button')
+    it('has no "Previous" button', function () {
+      expect($('.previous')).not.toBeVisible();
+    });
 
+    it('has no "Next" button', function () {
+      expect($('.next')).not.toBeVisible();
+    });
   });
 
 
@@ -32,11 +37,31 @@ describe("jquery.paginateFormUITools", function() {
     });
 
     describe('with jquery fn', function() {
-      it('has 3 tabbed page links', function () {
+      beforeEach(function (){
         custom_form = $('.custom_form').paginateFormUITools();
+      });
+
+      it('has 3 tabbed page links', function () {
         var tabbed_page_links = custom_form.find('ul.tabs a');
         expect(tabbed_page_links.length).toEqual(3);
       });
+
+      it('has no "Previous" button', function () {
+        expect($('input.previous')).not.toBeVisible();
+      });
+
+      it('has a "Next" button', function () {
+        expect($('input.next')).toBeVisible();
+      });
+
+      describe('clicking the "Next" link', function() {
+        it('has a "Previous" button', function() {
+          var click = $.Event('click');
+          $('input.next').trigger( click );
+          expect($('input.previous')).toBeVisible();
+        });
+      });
+
     });
   });
 });
