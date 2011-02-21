@@ -15,16 +15,9 @@ describe("jquery.formPaginatorUITools.js", function() {
       expect($('.next')).toBeVisible();
     });
 
-
-
-    // it('should call next_page function', function () {
-    //   spyOn(custom_form, 'nextPage');
-    //   expect(custom_form.nextPage).toHaveBeenCalled();
-    // });
-
-
-
-
+    it('remove page breaks', function () {
+      expect($('.custom_form')).not.toContain('div.page_break');
+    });
   });
 
   describe("previousPage()", function() {
@@ -36,9 +29,20 @@ describe("jquery.formPaginatorUITools.js", function() {
     });
   });
 
-  // describe("other stuff", function() {
-  //   it('remove page breaks', function () {
-  //     expect($('div.page_break')).toExist();
-  //   });
-  // });
+  describe("page content and layout", function() {
+    it('should contain a signle panes div', function () {
+      var panes = $('.custom_form div.panes')
+      expect(panes.length).toEqual(1);
+    });
+
+    it('should only display a single virtual page', function () {
+      $('div.panes > div').each(function(i) {
+        if (i == 0) {
+          expect($(this)).toBeVisible();
+        } else {
+          expect($(this)).not.toBeVisible();
+        }
+      });
+    });
+  });
 });
