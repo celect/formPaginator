@@ -51,17 +51,31 @@ describe("jquery.paginateFormUITools", function() {
       });
 
       it('has a "Next" button', function () {
+        console.info('first')
+        console.info($('input.next'))
         expect($('input.next')).toBeVisible();
       });
 
       describe('clicking the "Next" link', function() {
-        it('has a "Previous" button', function() {
+        beforeEach(function (){
           var click = $.Event('click');
           $('input.next').trigger( click );
+        });
+
+        it('has a "Previous" button', function() {
+          console.info($('input.next'))
           expect($('input.previous')).toBeVisible();
         });
-      });
 
+        it('has a "Next" button', function() {
+          expect($('input.next')).toBeVisible();
+        });
+
+        it('does not have a "Submit" button', function() {
+          expect($('button.save')).not.toBeVisible();
+        });
+
+      });
     });
   });
 });
