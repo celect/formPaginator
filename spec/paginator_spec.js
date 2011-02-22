@@ -51,8 +51,8 @@ describe("jquery.paginateFormUITools", function() {
       });
 
       it('has a "Next" button', function () {
-        console.info('first')
-        console.info($('input.next'))
+        // console.info('first')
+        // console.info($('input.next'))
         expect($('input.next')).toBeVisible();
       });
 
@@ -63,7 +63,7 @@ describe("jquery.paginateFormUITools", function() {
         });
 
         it('has a "Previous" button', function() {
-          console.info($('input.next'))
+          // console.info($('input.next'))
           expect($('input.previous')).toBeVisible();
         });
 
